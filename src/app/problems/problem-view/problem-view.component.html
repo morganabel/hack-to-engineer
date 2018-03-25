@@ -1,0 +1,16 @@
+<div class="container">
+  <div *ngIf="problem$ | async; let problem; else loading">
+    <app-problem [problem]="problem"></app-problem>
+  </div>
+  <ng-template #loading>
+    <mat-card text-center>
+      <mat-card-title>
+        Loading...
+      </mat-card-title>
+      <mat-card-content>
+        <app-loader [isLoading]="true" size="1.5"></app-loader>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>
+  

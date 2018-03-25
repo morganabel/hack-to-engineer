@@ -1,0 +1,15 @@
+<div fxFlexFill>
+  <div *ngIf="operations$ | async; let operations; else loading">
+    <p *ngIf="importDoc">
+      Imported from <a [routerLink]="['/datastructures', importDoc.id]" >{{importDoc.data.name}}</a>
+    </p>
+    <div *ngFor="let operation of operations">
+      <app-operation [operation]="operation" [importDoc]="importDoc"></app-operation>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div fxFlexFill text-center>
+      <app-loader [isLoading]="true" size="1.5"></app-loader>
+    </div>
+  </ng-template>
+</div>

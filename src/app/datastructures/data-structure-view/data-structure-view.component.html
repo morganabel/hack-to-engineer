@@ -1,0 +1,16 @@
+<div class="container">
+    <div *ngIf="dataStructure$ | async; let dataStructure; else loading">
+      <app-data-structure [dataStructure]="dataStructure"></app-data-structure>
+    </div>
+    <ng-template #loading>
+      <mat-card text-center>
+        <mat-card-title>
+          Loading...
+        </mat-card-title>
+        <mat-card-content>
+          <app-loader [isLoading]="true" size="1.5"></app-loader>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
+</div>
+  

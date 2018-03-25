@@ -1,0 +1,47 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth.uid != null;
+    }
+
+    function hasRole(role) {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+    }
+
+    match /{document=**} {
+      allow read: if hasRole('admin') == true;
+      allow write: if hasRole('admin') == true;
+    }
+
+    match /users/{document} {
+      allow read;
+      allow create: if signedIn() && request.resource.data.roles.keys().hasAny(['admin', 'moderator']) == false;
+      allow update: if hasRole('admin') == true || request.auth.uid == resource.data.id;
+    }
+
+    match /algorithms/{document=**} {
+      allow read;
+    }
+
+    match /datastructures/{document=**} {
+      allow read;
+    }
+
+    match /problems/{document=**} {
+      allow read;
+    }
+
+    match /fundamentals/{document=**} {
+      allow read;
+    }
+
+    match /codeblocks/{document=**} {
+      allow read;
+    }
+
+    match /tags/{document=**} {
+      allow read;
+    }
+  }
+}

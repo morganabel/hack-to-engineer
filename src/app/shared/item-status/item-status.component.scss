@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+@import "theme-variables";
+
+.mat-chip.mat-warn {
+    background: mat-color($app-warn);
+    color: #ffffff;
+}

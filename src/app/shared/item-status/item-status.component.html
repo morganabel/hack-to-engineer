@@ -1,0 +1,15 @@
+<div *ngIf="!parentDoc.data.isComplete || (editMode$ | async)" fxLayout="column" fxLayoutGap="10px" margin-bottom>
+  <mat-slide-toggle *ngIf="editMode$ | async" [checked]="parentDoc.data.isComplete" (change)="onStatusChange($event)">Mark Complete</mat-slide-toggle>
+  <mat-chip-list *ngIf="!parentDoc.data.isComplete" selectable="false" class="mat-chip-list-stacked" aria-orientation="vertical">
+    <mat-chip color="warn">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div>
+          <mat-icon>warning</mat-icon>
+        </div>
+        <div>
+          In Progress
+        </div>
+      </div>
+    </mat-chip>
+  </mat-chip-list>
+</div>

@@ -1,0 +1,18 @@
+<div>
+  <h3>{{operation.data.name}}</h3>
+  <app-item-status [parentDoc]="operation"></app-item-status>
+  <h4 *ngIf="operation.data.averageSpeed || (editMode$ | async)">
+    Average Speed: 
+    <app-inline-edit inline-block key="averageSpeed" [enabled]="editMode$ | async" [text]="operation.data.averageSpeed" (onSave)="onSave($event)">
+      <span [innerHtml]="operation.data.averageSpeed | complexity"></span>
+    </app-inline-edit>
+  </h4>
+  <h4 *ngIf="operation.data.worstCaseSpeed || (editMode$ | async)">
+    Worst-Case Speed: 
+    <app-inline-edit inline-block key="worstCaseSpeed" [enabled]="editMode$ | async" [text]="operation.data.worstCaseSpeed" (onSave)="onSave($event)">
+      <span [innerHtml]="operation.data.worstCaseSpeed | complexity"></span>
+    </app-inline-edit>
+  </h4>
+
+  <app-editor *ngIf="!importDoc && (editMode$ | async)" dataKey="description" [data]="operation.data" (onSave)="onSave($event)"></app-editor>
+</div>

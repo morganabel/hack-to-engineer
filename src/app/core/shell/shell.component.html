@@ -1,0 +1,63 @@
+<div fxFlex>
+  <mat-sidenav-container fxFill>
+    <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile"
+                 ngClass.gt-sm="has-border">
+      <mat-toolbar color="primary">
+        <span translate>APP_NAME</span>
+        <div fxFlex></div>
+        <div>
+        </div>
+      </mat-toolbar>
+      <nav>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>Home</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/fundamentals" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>CS Fundamentals</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/datastructures" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>Data Structures</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/algorithms" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>Algorithms</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/problems" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>Problems</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/tags" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>Tags</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/login" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>Login</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>About</span>
+          </a>
+          <mat-divider></mat-divider>
+          <mat-list-item *ngIf="canEdit$ | async">
+            <mat-slide-toggle (change)="onEditModeChange($event)">Edit Mode</mat-slide-toggle>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="mat-elevation-z6">
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <app-search-bar fxLayoutAlign="start center" full-width [title]="title" (onSelect)="onSearchSelect($event)"></app-search-bar>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

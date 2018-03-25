@@ -1,0 +1,15 @@
+<ng-container>
+  <div *ngIf="enabled && showEditor">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Edit Me" [(ngModel)]="editText"/>
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="cancel($event)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-button (click)="save($event)" color="primary">Save</button>
+  </div>
+  <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" *ngIf="!enabled || !showEditor">
+    <ng-content></ng-content>
+    <mat-icon (click)="start($event)" *ngIf="enabled && (showEditButton || !text)">mode_edit</mat-icon>
+  </div>
+</ng-container>

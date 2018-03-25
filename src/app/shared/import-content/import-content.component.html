@@ -1,0 +1,4 @@
+<div>
+  <button *ngIf="!parentDoc.data[key]" mat-raised-button color="primary" (click)="start($event)">Import</button>
+  <button *ngIf="parentDoc.data[key]" mat-raised-button color="warn">Unlink</button>
+</div>

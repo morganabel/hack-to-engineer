@@ -1,0 +1,11 @@
+<div>
+  <mat-card>
+    <mat-card-title>
+      Overview
+    </mat-card-title>
+    <mat-card-content>
+      <app-item-status [parentDoc]="fundamental"></app-item-status>
+      <app-editor *ngIf="editMode$ | async" dataKey="description" [data]="fundamental.data" (onSave)="onSave($event)"></app-editor>
+    </mat-card-content>
+  </mat-card>
+</div>

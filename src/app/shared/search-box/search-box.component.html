@@ -1,0 +1,12 @@
+<form [formGroup]="form" full-width>  
+  <div fxLayout="row" fxLayoutGap="10px">
+    <mat-form-field full-width>
+      <input matInput [placeholder]="placeholder" formControlName="query" [matAutocomplete]="auto" type="text">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayNameFn" (optionSelected)="optionSelected($event)">
+        <mat-option *ngFor="let result of results$ | async" [value]="result">
+          <span class="bold accent">{{result.collection | collectionName}} |</span> {{result.data.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>      
+  </div> 
+</form>

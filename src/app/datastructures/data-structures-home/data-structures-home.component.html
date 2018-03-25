@@ -1,0 +1,33 @@
+<div class="container">
+  <div *ngIf="dataStructures$ | async; let dataStructures; else loading">
+    <mat-card>
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutGap="10px"> 
+          <mat-form-field>
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" placeholder="filter" [(ngModel)]="filterValue"/>
+            <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="filterValue=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <mat-list>
+          <a mat-list-item [routerLink]="['/datastructures', dataStructure.id]" *ngFor="let dataStructure of (dataStructures | fuse:filterValue:{keys: ['data.name']})">
+            {{dataStructure.data.name}}
+          </a>
+        </mat-list>
+        <app-new-item *ngIf="editMode$ | async" [collection]="collections.DataStructures"></app-new-item>   
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <ng-template #loading>
+    <mat-card text-center>
+      <mat-card-title>
+        Loading...
+      </mat-card-title>
+      <mat-card-content>
+        <app-loader [isLoading]="true" size="1.5"></app-loader>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>

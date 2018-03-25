@@ -1,0 +1,57 @@
+/*
+ * Global application theme.
+ * Framework overrides and customization goes here.
+ */
+
+ @import '~@angular/material/theming';
+ @import "theme-variables";
+
+// stylelint-disable-next-line selector-max-universal
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100%;
+}
+
+.mat-card {
+  margin: 12px;
+}
+
+span.bold.accent {
+  font-weight: 700;
+  color: mat-color($app-accent);
+}
+
+pre[class*="code-block-id-"] {
+  position: relative;
+}
+
+[full-width] {
+  width: 100%;
+}
+
+[text-center] {
+  text-align: center;
+}
+
+[inline-block] {
+  display: inline-block;
+}
+
+[padding] {
+  padding: 16px;
+}
+
+[margin-top] {
+  margin-top: 16px;
+}
+
+[margin-bottom] {
+  margin-bottom: 16px;
+}

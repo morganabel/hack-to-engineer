@@ -1,0 +1,18 @@
+<div>
+  <div *ngIf="!showForm">
+    <button mat-raised-button color="primary" (click)="start($event)">Add New</button>
+  </div>
+  <div *ngIf="showForm">
+    <form [formGroup]="form" (ngSubmit)="submit($event)">
+      <div fxLayout="column" fxLayoutAlign="space-around none">
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Name" type="text">
+        </mat-form-field>   
+        <div>
+          <button type="submit" mat-raised-button color="primary" [disabled]="submitting">Submit</button>
+          <button type="reset" mat-raised-button color="warn" (click)="cancel($event)">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

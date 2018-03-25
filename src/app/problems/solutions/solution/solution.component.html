@@ -1,0 +1,25 @@
+<div>
+  <h3>{{solution.data.name}}</h3>
+  <app-item-status [parentDoc]="solution"></app-item-status>
+  <app-tags key="tags" [parentDoc]="solution"></app-tags>
+  <h4 *ngIf="solution.data.size || (editMode$ | async)">
+    Memory Size: 
+    <app-inline-edit inline-block key="size" [enabled]="editMode$ | async" [text]="solution.data.size" (onSave)="onSave($event)">
+      <span [innerHtml]="solution.data.size | complexity"></span>
+    </app-inline-edit>
+  </h4>
+  <h4 *ngIf="solution.data.averageSpeed || (editMode$ | async)">
+    Average Speed: 
+    <app-inline-edit inline-block key="averageSpeed" [enabled]="editMode$ | async" [text]="solution.data.averageSpeed" (onSave)="onSave($event)">
+      <span [innerHtml]="solution.data.averageSpeed | complexity"></span>
+    </app-inline-edit>
+  </h4>
+  <h4 *ngIf="solution.data.worstCaseSpeed || (editMode$ | async)">
+    Worst-Case Speed: 
+    <app-inline-edit inline-block key="worstCaseSpeed" [enabled]="editMode$ | async" [text]="solution.data.worstCaseSpeed" (onSave)="onSave($event)">
+      <span [innerHtml]="solution.data.worstCaseSpeed | complexity"></span>
+    </app-inline-edit>
+  </h4>
+  
+  <app-editor dataKey="description" [data]="solution.data" (onSave)="onSave($event)"></app-editor>
+</div>

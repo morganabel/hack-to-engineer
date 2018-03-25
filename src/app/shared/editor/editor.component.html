@@ -1,0 +1,15 @@
+<div>
+  <div *ngIf="!(editMode$ | async)">
+    <app-text-block-render [html]="data[dataKey]"></app-text-block-render>
+  </div>
+  <div *ngIf="editMode$ | async">
+    <editor [inline]="true" [init]="editorSettings" [initialValue]="data[dataKey]" (onInit)="resetEditor($event)" (onDirty)="onDirty($event)"></editor>
+    <div *ngIf="codeEditorInit" [attr.padding]="showCodeEditor ? '' : null">
+      <app-code-editor *appMonacoLoader [hidden]="!showCodeEditor"></app-code-editor>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button mat-raised-button color="primary" (click)="save($event)" [disabled]="!editor || loading">Save</button>
+      <button mat-raised-button color="accent" (click)="toggleCodeEditor($event)">Code Editor</button>
+    </div>
+  </div>
+</div>

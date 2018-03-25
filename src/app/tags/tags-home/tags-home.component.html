@@ -1,0 +1,43 @@
+<div class="container">
+  <div *ngIf="tagMap$ | async; let tagMap; else loading">
+    <mat-card>
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutGap="10px"> 
+          <mat-form-field>
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" placeholder="filter" [(ngModel)]="filterValue"/>
+            <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="filterValue=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <mat-accordion multi="true">
+          <mat-expansion-panel *ngFor="let key of objectKeys(tagMap); let i=index">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{key | ucwords}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+  
+            <mat-list>
+              <a mat-list-item [routerLink]="['/tags', tag.id]" *ngFor="let tag of (tagMap[key] | fuse:filterValue:{keys: ['data.name']})">
+                {{tag.data.name}}
+              </a>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <app-new-tag *ngIf="editMode$ | async" [collection]="collections.Tags"></app-new-tag>   
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <ng-template #loading>
+    <mat-card text-center>
+      <mat-card-title>
+        Loading...
+      </mat-card-title>
+      <mat-card-content>
+        <app-loader [isLoading]="true" size="1.5"></app-loader>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>

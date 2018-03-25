@@ -1,0 +1,105 @@
+<div>
+  <mat-card>
+    <mat-card-title>
+      Overview
+    </mat-card-title>
+    <mat-card-content>
+      <app-item-status [parentDoc]="dataStructure"></app-item-status>
+      <h3>
+        Memory Space: 
+        <app-inline-edit inline-block key="size" [enabled]="editMode$ | async" [text]="dataStructure.data.size" (onSave)="onSave($event)">
+          <span [innerHtml]="dataStructure.data.size | complexity"></span>
+        </app-inline-edit>
+      </h3>
+
+      <app-editor dataKey="description" [data]="dataStructure.data" (onSave)="onSave($event)"></app-editor>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      Operations
+    </mat-card-title>
+    <mat-card-content>
+      <app-operations [dataStructure]="dataStructure"></app-operations>
+      <div fxLayout="row" fxLayoutGap="10px" margin-top>  
+        <app-new-item *ngIf="editMode$ | async" key="operations" [isSubDocument]="true" [parentDoc]="dataStructure" [collection]="collections.DataStructureOperations" (onCreate)="onAddOperation($event)"></app-new-item>
+        <app-import-content *ngIf="editMode$ | async" key="operationsLinkId" [parentDoc]="dataStructure" [collection]="collections.DataStructures"></app-import-content>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      Related
+    </mat-card-title>
+    <mat-card-content>
+      <div *ngIf="editEnabled && editMode$ | async; else relatedList">
+        <mat-selection-list *ngIf="dataStructure.data.related" #related>
+          <mat-list-option *ngFor="let key of objectKeys(dataStructure.data.related)">
+            {{dataStructure.data.related[key]}}
+          </mat-list-option>            
+        </mat-selection-list>
+      </div>
+      <ng-template #relatedList>
+        <mat-list *ngIf="dataStructure.data.related">
+          <a mat-list-item [routerLink]="['/datastructures', key]" *ngFor="let key of objectKeys(dataStructure.data.related)">
+            {{dataStructure.data.related[key]}}
+          </a>
+        </mat-list>
+      </ng-template>
+      <div fxLayout="row" fxLayoutGap="10px">  
+        <app-new-item *ngIf="editMode$ | async" key="related" [parentDoc]="dataStructure" [collection]="collections.DataStructures" (onCreate)="onAdd($event)"></app-new-item>
+        <app-link-item *ngIf="editMode$ | async" key="related" [parentDoc]="dataStructure" [collection]="collections.DataStructures" (onLink)="onAdd($event)"></app-link-item>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      Algorithms
+    </mat-card-title>
+    <mat-card-content>
+      <div *ngIf="editEnabled && editMode$ | async; else algoList">
+        <mat-selection-list *ngIf="dataStructure.data[collections.Algorithms]" #algos>
+          <mat-list-option *ngFor="let key of objectKeys(dataStructure.data[collections.Algorithms])">
+            {{dataStructure.data[collections.Algorithms][key]}}
+          </mat-list-option>            
+        </mat-selection-list>
+      </div>
+      <ng-template #algoList>
+        <mat-list *ngIf="dataStructure.data[collections.Algorithms]">
+          <a mat-list-item [routerLink]="['/algorithms', key]" *ngFor="let key of objectKeys(dataStructure.data[collections.Algorithms])">
+            {{dataStructure.data[collections.Algorithms][key]}}
+          </a>
+        </mat-list>
+      </ng-template>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <app-new-item *ngIf="editMode$ | async" [parentDoc]="dataStructure" [collection]="collections.Algorithms" (onCreate)="onAdd($event)"></app-new-item>   
+        <app-link-item *ngIf="editMode$ | async" [parentDoc]="dataStructure" [collection]="collections.Algorithms" (onLink)="onAdd($event)"></app-link-item>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>
+      Problems
+    </mat-card-title>
+    <mat-card-content>
+      <div *ngIf="editEnabled && editMode$ | async; else problemList">
+        <mat-selection-list *ngIf="dataStructure.data[collections.Problems]" #problems>
+          <mat-list-option *ngFor="let key of objectKeys(dataStructure.data[collections.Problems])">
+            {{dataStructure.data[collections.Problems][key]}}
+          </mat-list-option>            
+        </mat-selection-list>
+      </div>
+      <ng-template #problemList>
+        <mat-list *ngIf="dataStructure.data[collections.Problems]">
+          <a mat-list-item [routerLink]="['/problems', key]" *ngFor="let key of objectKeys(dataStructure.data[collections.Problems])">
+            {{dataStructure.data[collections.Problems][key]}}
+          </a>
+        </mat-list>
+      </ng-template>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <app-new-item *ngIf="editMode$ | async" [parentDoc]="dataStructure" [collection]="collections.Problems" (onCreate)="onAdd($event)"></app-new-item> 
+        <app-link-item *ngIf="editMode$ | async" [parentDoc]="dataStructure" [collection]="collections.Problems" (onLink)="onAdd($event)"></app-link-item>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

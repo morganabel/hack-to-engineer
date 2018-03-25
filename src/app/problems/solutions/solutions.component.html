@@ -1,0 +1,12 @@
+<div fxFlexFill>
+  <div *ngIf="solutions$ | async; let solutions; else loading">
+    <div *ngFor="let solution of solutions">
+      <app-solution [solution]="solution"></app-solution>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div fxFlexFill text-center>
+      <app-loader [isLoading]="true" size="1.5"></app-loader>
+    </div>
+  </ng-template>
+</div>
