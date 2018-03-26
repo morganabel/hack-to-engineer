@@ -7,5 +7,6 @@ export enum FirestoreCollection {
     ProblemSolutions = "solutions",
     Fundamentals = "fundamentals",
     CodeBlocks = "codeblocks",
-    Tags = "tags"
+    Tags = "tags",
+    MostRecent = "mostrecent"
 }

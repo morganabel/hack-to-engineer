@@ -9,6 +9,9 @@ const ALGOLIA_INDEX_NAME = "data";
 
 const FIRESTORE_MOST_RECENT_COLLECTION = "mostrecent";
 
+const NAME_FIELD_NAME = "name";
+const CREATEDAT_FIELD_NAME = "createdAt";
+
 let app: admin.app.App;
 
 function initAdmin() {
@@ -44,10 +47,17 @@ function setMostRecent(event: functions.Event<functions.firestore.DeltaDocumentS
     const db = getDb();
 
     const data = {
+        name: event.data.data()[NAME_FIELD_NAME],
         docId: event.data.id,
         docCollection: collection,
         lastUpdate: admin.firestore.FieldValue.serverTimestamp()
     };
+
+    // Add create time for sorting.
+    var prev = event.data.previous;
+    if (!prev.exists || !prev.data()[CREATEDAT_FIELD_NAME]) {
+        data[CREATEDAT_FIELD_NAME] = admin.firestore.FieldValue.serverTimestamp();
+    }
 
     return db.collection(FIRESTORE_MOST_RECENT_COLLECTION).doc(`mr_${event.data.id}`).set(data, { merge: true });
 }
