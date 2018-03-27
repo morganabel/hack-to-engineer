@@ -25,6 +25,7 @@ import { HtmlService } from '@app/core/html/html.service';
 import { CodeService } from './code/code.service';
 import { SharedModule } from '@app/shared';
 import { SearchBarComponent } from './shell/search-bar/search-bar.component';
+import { CollectionRouterService } from '@app/core/collection-router.service';
 
 export function monacoLoaderFactory(ngZone: NgZone) {
   return new MonacoLoaderService(ngZone);
@@ -75,7 +76,8 @@ export function monacoLoaderFactory(ngZone: NgZone) {
     FirestoreService,
     SearchService,
     HtmlService,
-    CodeService
+    CodeService,
+    CollectionRouterService
   ],
   exports: [
     ComplexityPipe
