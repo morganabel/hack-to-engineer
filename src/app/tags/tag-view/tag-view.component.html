@@ -9,6 +9,7 @@
         <app-editor *ngIf="editMode$ | async" dataKey="description" [data]="tag.data" (onSave)="onSave($event)"></app-editor>
       </mat-card-content>
     </mat-card>
+    <app-tag-matches [tag]="tag"></app-tag-matches>
   </div>
   <ng-template #loading>
     <mat-card text-center>

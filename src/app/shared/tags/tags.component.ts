@@ -10,6 +10,7 @@ import { GenerateMapUpdate } from '@app/core/gen-map-update.function';
 import { KEY_VALUE_SEPERATOR } from '@app/shared/keyvalueseperator';
 import { SearchBoxComponent } from '@app/shared/search-box/search-box.component';
 import { FirestoreCollection } from '@app/shared/firestore-collection.enum';
+import { GenerateTagId } from '@app/tags/generate-tag-id.function';
 
 @Component({
   selector: 'app-tags',
@@ -33,7 +34,7 @@ export class TagsComponent implements OnInit {
   }
 
   tagSelected(doc: FirestoreDoc<any>) {
-    const generatedId = `${doc.collection}${KEY_VALUE_SEPERATOR}${doc.id}`;
+    const generatedId = GenerateTagId(doc.collection, doc.id);
 
     const update = GenerateMapUpdate(this.parentDoc.data, this.key, generatedId, doc.data.name);
     this.firestore.partialUpdateByRef(this.parentDoc.ref, update)

@@ -39,6 +39,14 @@ function updateIndex(event: functions.Event<functions.firestore.DeltaDocumentSna
     item.collection = collection;
     item.data = event.data.data();
 
+    // Convert tags map to array for filtering in algolia.
+    if (item.data.tags) {
+        item.data.tagIndex = [];
+        Object.keys(item.data.tags).forEach(key => {
+            item.data.tagIndex.push(key);
+        });
+    }
+
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
     return index.saveObject(item);
 }

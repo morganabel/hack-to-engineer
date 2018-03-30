@@ -24,4 +24,12 @@ export class SearchService {
 
     return this.index.search(queryParams);
   }
+
+  queryByFacet(query: string, facetName: string, facetValue: any) {
+    const queryParams: algoliasearch.AlgoliaQueryParameters = Object.assign({}, this.defaultQueryParameters, { query: query });
+
+    queryParams.filters = `${facetName}:${facetValue}`;
+
+    return this.index.search(queryParams);
+  }
 }
