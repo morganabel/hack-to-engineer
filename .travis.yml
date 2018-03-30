@@ -9,6 +9,8 @@ before_script:
   - npm install -g @angular/cli
 script:
   - npm run env -s && ng build --prod --aot
+after_success:
+  - npm install --prefix ./functions
 deploy:
   provider: firebase
   token:
