@@ -16,6 +16,7 @@ In particular, this project aims to take an ELI5 (explain it like I am 5) approa
 
 * Short Term
     - [ ] Finish basic content
+    - [ ] Dev firebase environment
     - [ ] Get a real domain name
     - [ ] Tests
 * Long Term
