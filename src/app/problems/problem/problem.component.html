@@ -5,6 +5,7 @@
     </mat-card-title>
     <mat-card-content>
       <app-item-status [parentDoc]="problem"></app-item-status>
+      <app-tags key="tags" [parentDoc]="problem"></app-tags>
       <app-editor dataKey="description" [data]="problem.data" (onSave)="onSave($event)"></app-editor>
     </mat-card-content>
   </mat-card>

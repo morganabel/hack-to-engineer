@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { GenerateMapUpdate } from '@app/core/gen-map-update.function';
 import { KEY_VALUE_SEPERATOR } from '@app/shared/keyvalueseperator';
 import { SearchBoxComponent } from '@app/shared/search-box/search-box.component';
+import { FirestoreCollection } from '@app/shared/firestore-collection.enum';
 
 @Component({
   selector: 'app-tags',
@@ -18,6 +19,7 @@ import { SearchBoxComponent } from '@app/shared/search-box/search-box.component'
 export class TagsComponent implements OnInit {
   @ViewChild('search') searchBox: SearchBoxComponent;
   objectKeys = Object.keys;
+  collections = FirestoreCollection;
   @Input() key: string = "tags";
   @Input() parentDoc: FirestoreDoc<any>;
   @select(['auth', 'editMode']) editMode$: Observable<boolean>; 

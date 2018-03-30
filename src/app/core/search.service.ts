@@ -19,7 +19,7 @@ export class SearchService {
   search(query: string, collection?: string) {
     const queryParams: algoliasearch.AlgoliaQueryParameters = Object.assign({}, this.defaultQueryParameters, { query: query });
     if (collection) {
-      queryParams.filters = `collection = ${collection}`;
+      queryParams.filters = `collection:${collection}`;
     }
 
     return this.index.search(queryParams);

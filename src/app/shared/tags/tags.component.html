@@ -2,5 +2,5 @@
   <mat-chip-list *ngIf="parentDoc?.data[key]">
     <mat-chip *ngFor="let tagKey of objectKeys(parentDoc.data[key])">{{parentDoc.data[key][tagKey]}}</mat-chip>
   </mat-chip-list>
-  <app-search-box full-width placeholder="add tag" *ngIf="editMode$ | async" (onSelect)="tagSelected($event)" #search></app-search-box>
+  <app-search-box full-width placeholder="add tag" *ngIf="editMode$ | async" [collection]="collections.Tags" (onSelect)="tagSelected($event)" #search></app-search-box>
 </div>

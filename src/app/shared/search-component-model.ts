@@ -17,13 +17,13 @@ export abstract class SearchComponentModel implements OnInit {
 
     constructor(private formBuilder: FormBuilder, private searchService: SearchService) {
         this.form = this.formBuilder.group({
-        query: ['', Validators.nullValidator]
+            query: ['', Validators.nullValidator]
         });
     }
 
     ngOnInit() {
         if (!this.displayNameFn) {
-        this.displayNameFn = this.displayNameFnDefault;
+            this.displayNameFn = this.displayNameFnDefault;
         }
 
         this.results$ = this.form.controls.query.valueChanges
@@ -31,13 +31,13 @@ export abstract class SearchComponentModel implements OnInit {
         .distinctUntilChanged()
         .switchMap(v => {
             if (!v || this.form.controls.query.disabled) {
-            return Observable.of(new Array<FirestoreDoc<any>>());
+                return Observable.of(new Array<FirestoreDoc<any>>());
             }
 
-            return Observable.fromPromise(this.searchService.search(v))
-            .map(algoliaResponse => {
-                return algoliaResponse.hits as Array<FirestoreDoc<any>>;
-            })
+            return Observable.fromPromise(this.searchService.search(v, this.collection))
+                .map(algoliaResponse => {
+                    return algoliaResponse.hits as Array<FirestoreDoc<any>>;
+                });
         });
     }
 
