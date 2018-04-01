@@ -12,6 +12,7 @@ import { CollectionRouterService } from '@app/core/collection-router.service';
   styleUrls: ['./recent-list.component.scss']
 })
 export class RecentListComponent implements OnInit {
+  objectKeys = Object.keys;
   mostRecent$: Observable<FirestoreDoc<RecentDoc>[]>
 
   constructor(private firestore: FirestoreService, private collectionRouter: CollectionRouterService) {

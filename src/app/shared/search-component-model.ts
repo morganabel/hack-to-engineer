@@ -45,6 +45,7 @@ export abstract class SearchComponentModel implements OnInit {
 
     reset() {
         this.form.controls.query.reset();
+        this.form.controls.query.enable();
     }
 
     private displayNameFnDefault = (doc?: FirestoreDoc<any>): string | undefined => {

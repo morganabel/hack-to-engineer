@@ -1,5 +1,7 @@
 # Hack to Engineer
 
+[![Build Status](https://travis-ci.org/morganabel/hack-to-engineer.svg?branch=master)](https://travis-ci.org/morganabel/hack-to-engineer)
+
 This project is under active development.
 
 DO NOT USE THE ALGORITHMS FOUND AT THIS POINT IN PRODUCTION.

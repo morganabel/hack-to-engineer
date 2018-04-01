@@ -67,6 +67,11 @@ function setMostRecent(event: functions.Event<functions.firestore.DeltaDocumentS
         data[CREATEDAT_FIELD_NAME] = admin.firestore.FieldValue.serverTimestamp();
     }
 
+    // Add tags for display if applicable.
+    if (event.data.data().tags) {
+        data['tags'] = Object.assign({}, event.data.data().tags);
+    }
+
     return db.collection(FIRESTORE_MOST_RECENT_COLLECTION).doc(`mr_${event.data.id}`).set(data, { merge: true });
 }
 

@@ -4,7 +4,14 @@
         <mat-card-content>
           <mat-list>
             <a mat-list-item (click)="routeItem(item)" *ngFor="let item of mostRecent">
-              {{item.data.name}}
+              <div fxLayout="row">
+                <div>{{item.data.name}}</div>
+                <div>
+                  <mat-chip-list *ngIf="item?.data?.tags">
+                    <mat-chip *ngFor="let tagKey of objectKeys(item.data.tags)">{{item.data.tags[tagKey]}}</mat-chip>
+                  </mat-chip-list>
+                </div>
+              </div>
             </a>
           </mat-list> 
         </mat-card-content>
