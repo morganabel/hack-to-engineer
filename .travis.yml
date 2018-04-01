@@ -8,6 +8,7 @@ before_script:
   - npm install -g firebase-tools
   - npm install -g @angular/cli
   - npm install -g tslint
+  - npm install -g typescript
 script:
   - npm run env -s && ng build --prod --aot
 after_success:
@@ -15,5 +16,5 @@ after_success:
 deploy:
   provider: firebase
   token:
-    secure: $FIREBASE_TOKEN
+    secure: $FIREBASE_TOKEN_SECURE
   project: "algosanddatastructures-3acf6"
