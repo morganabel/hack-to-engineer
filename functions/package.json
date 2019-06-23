@@ -1,5 +1,5 @@
 {
-  "name": "functions",
+	"name": "functions",
   "scripts": {
     "lint": "./node_modules/.bin/tslint -p tslint.json",
     "build": "./node_modules/.bin/tsc",
@@ -9,7 +9,10 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
-  "main": "lib/index.js",
+	"main": "lib/index.js",
+	"engines": {
+		"node": "8"
+	},
   "dependencies": {
     "algoliasearch": "^3.26.0",
     "cheerio": "^1.0.0-rc.2",
