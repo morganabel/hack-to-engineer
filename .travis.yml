@@ -12,7 +12,7 @@ before_script:
 script:
 - npm run env -s && ng build --prod --aot
 after_success:
-- cd functions && npm install
+- cd functions && npm install && cd -
 deploy:
   provider: firebase
   token:
