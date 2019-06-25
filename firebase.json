@@ -5,8 +5,8 @@
   },
   "functions": {
     "predeploy": [
-      "npm --prefix ./functions run lint",
-      "npm --prefix ./functions run build"
+      "cd functions && npm run lint",
+      "cd functions && npm run build"
     ]
   },
   "hosting": {
