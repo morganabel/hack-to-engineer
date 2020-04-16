@@ -497,9 +497,9 @@ agent-base@2:
     extend "~3.0.0"
     semver "~5.0.1"
 
-agent-base@^4.1.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-4.2.0.tgz#9838b5c3392b962bad031e6a4c5e1024abec45ce"
+agent-base@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-4.3.0.tgz#8165f01c436009bccad0b1d122f05ed770efc6ee"
   dependencies:
     es6-promisify "^5.0.0"
 
@@ -3867,11 +3867,11 @@ https-proxy-agent@1, https-proxy-agent@^1.0.0:
     debug "2"
     extend "3"
 
-https-proxy-agent@^2.0.0, https-proxy-agent@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.0.tgz#7fbba856be8cd677986f42ebd3664f6317257887"
+https-proxy-agent@^2.1.0, https-proxy-agent@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.3.tgz#fb6cd98ed5b9c35056b5a73cd01a8a721d7193d1"
   dependencies:
-    agent-base "^4.1.0"
+    agent-base "^4.3.0"
     debug "^3.1.0"
 
 iconv-lite@0.4.15:
